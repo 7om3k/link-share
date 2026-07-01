@@ -1,0 +1,7 @@
+services:
+  user-links:
+    build:
+      context: ./user-links/.
+    container_name: user-links
+    ports:
+      - 8080:8080
