@@ -1,7 +1,34 @@
 services:
   user-links:
+    depends_on:
+      - user-links-db
     build:
       context: ./user-links/.
     container_name: user-links
+    hostname: user-links
+    networks:
+      - link-share-net
     ports:
       - 8080:8080
+    environment:
+      - POSTGRES_PASSWORD=${LINK_SHARE_DB_SUPERUSER:?database password not set}
+
+  user-links-db:
+    image: postgres:18.4
+    container_name: user-links-db
+    hostname: user-links-db
+    networks:
+      - link-share-net
+    environment:
+      POSTGRES_PASSWORD: ${LINK_SHARE_DB_SUPERUSER:?database password not set}
+    ports:
+      - "5432:5432"
+    volumes:
+      - user-links-volume:/var/lib/postgresql
+
+volumes:
+  user-links-volume:
+
+networks:
+  link-share-net:
+    driver: bridge
