@@ -5,12 +5,12 @@ Keep your links in one place and share them with your friends.
 
 on Mac or Linux:
 ```
-export LINK_SHARE_DB_SUPERUSER=link-share-usr
+export LINK_SHARE_DB_PASSWORD=mysecretpassword
 ```
 
 on Windows
 ```
-C:\Users\you\data-access> set LINK_SHARE_DB_SUPERUSER=link-share-usr
+C:\Users\you\data-access> set LINK_SHARE_DB_PASSWORD=mysecretpassword
 ```
 
 ## Run the app

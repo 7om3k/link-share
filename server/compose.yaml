@@ -11,7 +11,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - POSTGRES_PASSWORD=${LINK_SHARE_DB_SUPERUSER:?database password not set}
+      - POSTGRES_PASSWORD=${LINK_SHARE_DB_PASSWORD:?database password not set}
 
   user-links-db:
     image: postgres:18.4
@@ -20,10 +20,11 @@ services:
     networks:
       - link-share-net
     environment:
-      POSTGRES_PASSWORD: ${LINK_SHARE_DB_SUPERUSER:?database password not set}
+      POSTGRES_PASSWORD: ${LINK_SHARE_DB_PASSWORD:?database password not set}
     ports:
       - "5432:5432"
     volumes:
+      - ./user-links/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - user-links-volume:/var/lib/postgresql
 
 volumes:
