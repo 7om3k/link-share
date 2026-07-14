@@ -1,12 +1,14 @@
 # syntax=docker/dockerfile:1
 
 FROM golang:1.26.4
-LABEL authors="7om3k"
+LABEL authors="github.com/7om3k"
 
 WORKDIR /app
 
 # Docker's COPY command is quite sensitive in its interpretation of the trailing slash
-COPY go.mod ./
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY *.go ./
 
 # Binary is located in the root of the filesystem of the image
