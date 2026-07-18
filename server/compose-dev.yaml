@@ -5,26 +5,24 @@ services:
     build:
       context: ./user-links/.
     container_name: user-links
-    hostname: user-links
     networks:
       - link-share-net
     ports:
-      - 8080:8080
+      - "127.0.0.1:8080:8080"
     environment:
       - POSTGRES_PASSWORD=${LINK_SHARE_DB_PASSWORD:?database password not set}
 
   user-links-db:
     image: postgres:18.4
     container_name: user-links-db
-    hostname: user-links-db
     networks:
       - link-share-net
+    ports:
+      - "127.0.0.1:5432:5432"
     environment:
       POSTGRES_PASSWORD: ${LINK_SHARE_DB_PASSWORD:?database password not set}
-    ports:
-      - "5432:5432"
     volumes:
-      - ./user-links/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./user-links/init-db-dev:/docker-entrypoint-initdb.d
       - user-links-volume:/var/lib/postgresql
 
 volumes:
