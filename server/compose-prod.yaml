@@ -1,4 +1,16 @@
 services:
+
+  web-ui:
+    depends_on:
+      - user-links
+    build:
+      context: ./web-ui/.
+    container_name: web-ui
+    networks:
+      - link-share-net
+    ports:
+      - "8080:8080"
+
   user-links:
     depends_on:
       - user-links-db
@@ -7,10 +19,8 @@ services:
     container_name: user-links
     networks:
       - link-share-net
-    ports:
-      - "8080:8080"
     environment:
-      - POSTGRES_PASSWORD=${LINK_SHARE_DB_PASSWORD:?database password not set}
+      - POSTGRES_PASSWORD=${LINK_SHARE_DB_SUPERUSER:?database password not set}
 
   user-links-db:
     image: postgres:18.4

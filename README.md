@@ -1,5 +1,16 @@
-# link-share
+# Link Share
 Keep your links in one place and share them with your friends.
+
+## Architecture
+
+- Microservices architecture on back-end.
+  - Split by domain (DDD).
+  - Every service has its own storage (with different access rights and roles in future).
+  - All services are not available from outside of docker network.
+- Single access point by web-ui service
+  - Progressive enhancement on front-end with web components.
+  - Declarative code inside components.
+  - Declarative CSS.
 
 ## Development Setup
 

@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/user-links", getUserLinks)
+	http.HandleFunc("/api/user-links", getUserLinks)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":5000", nil))
 }
 
 type UserLink struct {
