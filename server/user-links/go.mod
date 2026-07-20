@@ -1,6 +1,6 @@
 module github.com/7om3k/link-share/user-links
 
-go 1.26.3
+go 1.26.5
 
 require github.com/jackc/pgx/v5 v5.10.0
 

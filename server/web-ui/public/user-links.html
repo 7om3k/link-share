@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="author" content="github.com/7om3k" />
+  <meta name="language" content="english" />
+  <meta charset="UTF-8" />
+  <meta name=”title” content="Home" />
+</head>
+<body>
+<h1>
+  User links
+</h1>
+{{range .}}
+<user-link-card>
+  <article data-link-card>
+    <h2>{{ .Title }}</h2>
+    <a href="{{ .Url }}">Visit</a>
+  </article>
+</user-link-card>
+{{end}}
+<script>
+  // TODO: To create static file endpoint for separation of js, css, media files from html
+  class UserLinkCard extends HTMLElement {
+    constructor() {
+      super();
+      this._linkCardElement = null;
+    }
+
+    connectedCallback() {
+      this._linkCardElement = this.querySelector('[data-link-card]');
+      console.debug("Progressive enhancement not implemented yet, card element: ", this._linkCardElement);
+    }
+  }
+
+  customElements.define("user-link-card", UserLinkCard);
+</script>
+</body>
+</html>
